@@ -7,7 +7,7 @@ app.get('/', function(request, response) {
 });
 
 app.get('/blocks', function(request, response) {
-	response.redirect('/parts');
+	response.redirect(301, '/parts');
 });
 
 app.get('/parts', function(request, response) {
