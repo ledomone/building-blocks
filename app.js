@@ -7,6 +7,10 @@ app.get('/', function(request, response) {
 });
 
 app.get('/blocks', function(request, response) {
+	response.redirect('/parts');
+});
+
+app.get('/parts', function(request, response) {
 	var blocks = ['Fixed', 'Movable', 'Rotating'];
 	response.json(blocks);
 });
