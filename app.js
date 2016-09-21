@@ -8,7 +8,7 @@ app.get('/', function(request, response) {
 
 app.get('/blocks', function(request, response) {
 	var blocks = ['Fixed', 'Movable', 'Rotating'];
-	response.send(blocks);
+	response.json(blocks);
 });
 
 app.listen(3000, function() {
