@@ -1,0 +1,25 @@
+{
+  "name": "building-blocks",
+  "version": "1.0.0",
+  "description": "Building Blocks of Express.js - Code School course",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ledomone/building-blocks.git"
+  },
+  "keywords": [
+    "expressjs"
+  ],
+  "author": "Dominik",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ledomone/building-blocks/issues"
+  },
+  "homepage": "https://github.com/ledomone/building-blocks#readme",
+  "dependencies": {
+    "express": "^4.14.0"
+  }
+}
