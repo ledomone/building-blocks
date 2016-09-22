@@ -7,8 +7,13 @@ var logger = require('./logger');
 app.use(logger);
 app.use(express.static('public'));
 
+var blocks = {
+	'Fixed': 'Fastened securely in position',
+	'Movable': 'Capable of being moved',
+	'Rotating': 'Moving in a circle around its center'
+};
+
 app.get('/blocks', function(request, response) {
-	var blocks = ['Fixed', 'Movable', 'Rotating'];
 	if (request.query.limit >= 0) {
 		response.json(blocks.slice(0, request.query.limit));
 	} else {
