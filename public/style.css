@@ -1,0 +1,17 @@
+body {
+    background-image: url("bg-stars.png")
+}
+
+h1 {
+    color: white;
+    text-align: center;
+}
+
+p {
+    font-family: verdana;
+    font-size: 20px;
+}
+
+ul {
+	background-color: lightblue;
+}
