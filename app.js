@@ -23,7 +23,12 @@ app.get('/blocks', function(request, response) {
 
 app.get('/blocks/:name', function(request, response) {
 	var description = blocks[request.params.name];
-	response.json(description);
+	if (!description) {
+		// if not found - description is undefined
+		response.status(404).json('No description found for ' + request.params.name);
+	} else {
+		response.json(description);
+	}
 });
 
 app.listen(3000, function() {
