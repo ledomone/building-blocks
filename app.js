@@ -6,10 +6,6 @@ var app = express();
 app.use(express.static('public'));
 
 app.get('/blocks', function(request, response) {
-	response.redirect(301, '/parts');
-});
-
-app.get('/parts', function(request, response) {
 	var blocks = ['Fixed', 'Movable', 'Rotating'];
 	response.json(blocks);
 });
