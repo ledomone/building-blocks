@@ -2,8 +2,7 @@ var express = require('express');
 var app = express();
 
 app.get('/', function(request, response) {
-	response.write('Hello world!');
-	response.end();
+	response.sendFile(__dirname + '/public/index.html');
 });
 
 app.get('/blocks', function(request, response) {
