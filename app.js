@@ -1,8 +1,10 @@
 var express = require('express');
 var app = express();
 
+var logger = require('./logger');
 
 // middleware
+app.use(logger);
 app.use(express.static('public'));
 
 app.get('/blocks', function(request, response) {
