@@ -21,6 +21,11 @@ app.get('/blocks', function(request, response) {
 	}
 });
 
+app.get('/blocks/:name', function(request, response) {
+	var description = blocks[request.params.name];
+	response.json(description);
+});
+
 app.listen(3000, function() {
 	console.log('Listening on port 3000');
 });
