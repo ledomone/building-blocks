@@ -37,7 +37,7 @@ $(function() {
 		$.ajax({
 			type: 'DELETE', url: '/blocks/' + target.data('block')
 		}).done(function() {
-
+			target.parents('li').remove();
 		});
 	});
 });
