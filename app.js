@@ -2,6 +2,8 @@ var express = require('express');
 var app = express();
 
 var logger = require('./logger');
+var bodyParser = require('body-parser');
+var parseUrlencoded = bodyParser.urlencoded({ extended: false });
 
 // middleware
 app.use(logger);
@@ -12,6 +14,13 @@ var blocks = {
 	'Movable': 'Capable of being moved',
 	'Rotating': 'Moving in a circle around its center'
 };
+
+app.post('/blocks', parseUrlencoded, function(request, response) {
+	var newBlock = request.body;
+	blocks[newBlock.name] = newBlock.description;
+
+	response.status(201).json(newBlock.name);
+});
 
 app.param('name', function(request, response, next) {
 	var name = request.params.name;
