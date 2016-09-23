@@ -23,9 +23,9 @@ app.param('name', function(request, response, next) {
 
 app.get('/blocks', function(request, response) {
 	if (request.query.limit >= 0) {
-		response.json(blocks.slice(0, request.query.limit));
+		response.json(Object.keys(blocks).slice(0, request.query.limit));
 	} else {
-		response.json(blocks);
+		response.json(Object.keys(blocks));
 	}
 });
 
