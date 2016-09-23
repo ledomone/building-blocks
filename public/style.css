@@ -9,4 +9,12 @@ h1 {
 
 ul, form {
 	background-color: lightblue;
+	border-radius: 5px;
+}
+
+form {
+	max-width: 330px;
+	padding: 15px;
+	margin: 0 auto;
+	border-radius: 5px;
 }
