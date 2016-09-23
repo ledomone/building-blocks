@@ -16,8 +16,12 @@ var blocks = {
 };
 
 app.delete('/blocks/:name', function(request, response) {
-	delete blocks[request.blockName];
-	response.sendStatus(200);
+	if (blocks[request.blockName]) {
+		delete blocks[request.blockName];
+		response.sendStatus(200);
+	} else {
+		response.sendStatus(404);
+	}
 });
 
 app.post('/blocks', parseUrlencoded, function(request, response) {
