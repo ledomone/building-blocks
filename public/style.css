@@ -12,6 +12,6 @@ p {
     font-size: 20px;
 }
 
-ul {
+ul, form {
 	background-color: lightblue;
 }
