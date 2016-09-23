@@ -15,20 +15,21 @@ var blocks = {
 	'Rotating': 'Moving in a circle around its center'
 };
 
-app.delete('/blocks/:name', function(request, response) {
-	if (blocks[request.blockName]) {
-		delete blocks[request.blockName];
-		response.sendStatus(200);
-	} else {
-		response.sendStatus(404);
-	}
-});
+var blocksRoute = app.route('/blocks');
 
-app.post('/blocks', parseUrlencoded, function(request, response) {
+blocksRoute.post(parseUrlencoded, function(request, response) {
 	var newBlock = request.body;
 	blocks[newBlock.name] = newBlock.description;
 
 	response.status(201).json(newBlock.name);
+});
+
+blocksRoute.get(function(request, response) {
+	if (request.query.limit >= 0) {
+		response.json(Object.keys(blocks).slice(0, request.query.limit));
+	} else {
+		response.json(Object.keys(blocks));
+	}
 });
 
 app.param('name', function(request, response, next) {
@@ -39,21 +40,24 @@ app.param('name', function(request, response, next) {
 	next();
 });
 
-app.get('/blocks', function(request, response) {
-	if (request.query.limit >= 0) {
-		response.json(Object.keys(blocks).slice(0, request.query.limit));
-	} else {
-		response.json(Object.keys(blocks));
-	}
-});
+var blocksNameRoute = app.route('/blocks/:name');
 
-app.get('/blocks/:name', function(request, response) {
+blocksNameRoute.get(function(request, response) {
 	var description = blocks[request.blockName];
 	if (!description) {
 		// if not found - description is undefined
 		response.status(404).json('No description found for ' + request.params.name);
 	} else {
 		response.json(description);
+	}
+});
+
+blocksNameRoute.delete(function(request, response) {
+	if (blocks[request.blockName]) {
+		delete blocks[request.blockName];
+		response.sendStatus(200);
+	} else {
+		response.sendStatus(404);
 	}
 });
 
