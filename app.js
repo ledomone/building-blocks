@@ -13,6 +13,14 @@ var blocks = {
 	'Rotating': 'Moving in a circle around its center'
 };
 
+app.param('name', function(request, response, next) {
+	var name = request.params.name;
+	var block = name[0].toUpperCase() + name.slice(1).toLowerCase();
+
+	request.blockName = block;
+	next();
+});
+
 app.get('/blocks', function(request, response) {
 	if (request.query.limit >= 0) {
 		response.json(blocks.slice(0, request.query.limit));
@@ -22,9 +30,7 @@ app.get('/blocks', function(request, response) {
 });
 
 app.get('/blocks/:name', function(request, response) {
-	var name = request.params.name;
-	var block = name[0].toUpperCase() + name.slice(1).toLowerCase();
-	var description = blocks[block];
+	var description = blocks[request.blockName];
 	if (!description) {
 		// if not found - description is undefined
 		response.status(404).json('No description found for ' + request.params.name);
